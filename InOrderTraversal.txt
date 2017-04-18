@@ -1,0 +1,43 @@
+
+
+ // Inorder Traversal  Runtime = O(n): As each node is visited once  Space = O(n)
+ 
+ 
+ 
+ // Iterative Approach
+ 
+ public List<Integer> inorderTraversal2(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    if (root == null) return res;
+
+    Stack<TreeNode> stack = new Stack<>();
+    pushAllLeft(root, stack);
+    while (!stack.isEmpty()) {
+        TreeNode cur = stack.pop();
+        res.add(cur.val);
+        pushAllLeft(cur.right, stack);
+    }
+    return res;
+}
+
+public void pushAllLeft(TreeNode node, Stack stack){
+    while (node != null) {
+        stack.add(node);
+        node = node.left;
+    }
+}
+
+
+
+// Recursive Approach
+
+
+
+private void inorderTraversalRecursive(TreeNode root, List<Integer> result) {
+        if (root == null) {
+            return;
+        }
+        inorderTraversalRecursive(root.left, result);
+        result.add(root.val);
+        inorderTraversalRecursive(root.right, result);        
+    }
